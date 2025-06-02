@@ -12,9 +12,12 @@ app.use(bodyParser.urlencoded());
 
 
 app.use(shopRoutes)
-app.use(adminRoutes)
+app.use("/admin",adminRoutes)
 
+app.use((req,res,next)=>{    //catch all 
+    res.status(404).send("<h1>PAGE NOT FOUND 404")
 
+})
 
 
 
