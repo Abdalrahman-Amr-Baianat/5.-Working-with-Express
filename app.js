@@ -19,11 +19,11 @@ app.use(shopRoutes)
 app.use("/admin", adminData.routes)
 
 app.use((req,res,next)=>{    //catch all 
-    res.status(404).render('404')
+    res.status(404).render('404' ,{pageTitle :"Page Not Found"})
 
 })
 
-
+//res.render('add-product' ,{pageTitle: 'Add product' ,path: '/admin/add-product'})
 
 
 app.listen(3000)
