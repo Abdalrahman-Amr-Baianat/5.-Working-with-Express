@@ -1,29 +1,33 @@
+const path = require('path');
 
-const bodyParser = require('body-parser');
 const express = require('express');
-const app = express()
-app.set("view engine" ,"pug"); // Defualt templating engine
-app.set('views' , 'views');
-const path = require("path")
+const bodyParser = require('body-parser');
+const expressHbs = require('express-handlebars');
 
-const adminData = require("./routes/admin");
-const shopRoutes = require("./routes/shop");
-const { engine } = require('express-handlebars');
+const app = express();
 
-app.use(bodyParser.urlencoded());
-app.use(express.static(path.join(__dirname,'public'))) // To public Css file
+app.engine(
+  'hbs',
+  expressHbs({
+    layoutsDir: 'views/layouts/',
+    defaultLayout: 'main-layout',
+    extname: 'hbs'
+  })
+);
+app.set('view engine', 'hbs');
+app.set('views', 'views');
 
+const adminData = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(shopRoutes)
-app.use("/admin", adminData.routes)
+app.use('/admin', adminData.routes);
+app.use(shopRoutes);
 
-app.use((req,res,next)=>{    //catch all 
-    res.status(404).render('404' ,{pageTitle :"Page Not Found"})
+app.use((req, res, next) => {
+  res.status(404).render('404', { pageTitle: 'Page Not Found' });
+});
 
-})
-
-//res.render('add-product' ,{pageTitle: 'Add product' ,path: '/admin/add-product'})
-
-
-app.listen(3000)
+app.listen(3000);
