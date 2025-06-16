@@ -35,6 +35,7 @@ exports.getCart = (req, res, next) => {
     path: "/cart",
     pageTitle: "Your Cart",
   });
+  
 };
 
 exports.postCart = (req, res, next) => {
