@@ -1,8 +1,134 @@
 <%- include('includes/head.ejs') %>
+<style>
+  body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .container {
+    text-align: center;
+    padding: 50px 20px;
+  }
+
+  h1 {
+    font-size: 5rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    animation: bounce 1.2s infinite alternate;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #ffffff;
+  }
+
+  .card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .card:hover {
+    transform: scale(1.03);
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .highlight {
+    color: #00ffe0;
+  }
+
+  a {
+    color: #00ffff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  @keyframes bounce {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-10px);
+    }
+  }
+</style>
+
 </head>
-
 <body>
-    <%- include('includes/navigation.ejs') %>
-    <h1>Page Not Found!</h1>
+  <%- include('includes/navigation.ejs') %>
 
-<%- include('includes/end.ejs') %>
+  <div class="container">
+    <h1>404</h1>
+    <h2>Oops! Page Not Found.</h2>
+
+    <div class="card">
+      <p>But since you're here...</p>
+      <p>👨‍💻 Meet <span class="highlight">Abdalrhman_Amr_Eisa</span></p>
+      <p>🚀 <strong>Backend Developer at Baianat.com</strong></p>
+      <p>
+        💡 Expert in <span class="highlight">Node.js</span>, 
+        <span class="highlight">Express.js</span>, 
+        <span class="highlight">PostgreSQL</span>, 
+        <span class="highlight">Python</span>, and more.
+      </p>
+      <p>
+        📧 <a href="mailto:abdalrhmanamr2005@gmail.com">abdalrhmanamr2005@gmail.com</a><br>
+        📧 <a href="mailto:abdalrahman.amr@baianat.net">abdalrahman.amr@baianat.net</a><br>
+        🔗 <a href="https://github.com/Abdalrahman-Amr-Baianat" target="_blank">GitHub Profile</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    
+    const stars = [];
+    const starCount = 50;
+
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.style.position = 'absolute';
+      star.style.width = '2px';
+      star.style.height = '2px';
+      star.style.background = 'white';
+      star.style.borderRadius = '50%';
+      star.style.top = Math.random() * window.innerHeight + 'px';
+      star.style.left = Math.random() * window.innerWidth + 'px';
+      star.style.opacity = Math.random();
+      document.body.appendChild(star);
+      stars.push(star);
+    }
+
+    function animateStars() {
+      stars.forEach(star => {
+        let top = parseFloat(star.style.top);
+        top += 0.3;
+        if (top > window.innerHeight) top = 0;
+        star.style.top = top + 'px';
+      });
+      requestAnimationFrame(animateStars);
+    }
+
+    animateStars();
+  </script>
+
+  <%- include('includes/end.ejs') %>
+</body>
