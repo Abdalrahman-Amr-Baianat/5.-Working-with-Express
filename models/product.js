@@ -22,6 +22,6 @@ module.exports = class Product {
   }
 
   static findById(id) {
-    return db.execute('SELECT title,price,description,imageUrl FROM `node-complete`.products WHERE products.id = ?' , [this.id]);
+    return db.execute('SELECT title,price,description,imageUrl FROM `node-complete`.products WHERE products.id = ?' , [id]);
   }
 };
