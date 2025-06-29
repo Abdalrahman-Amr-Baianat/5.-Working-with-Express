@@ -1,3 +1,28 @@
+const mongoose = require("mongoose");
+const product = require("./product");
+Schema = mongoose.Schema;
+const UserSchema = Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  cart: {
+    items: [
+      {
+        productId: { type: Schema.Types.ObjectId,ref:"Product" , required: true },
+        quantity: { type: Number, required: true },
+      },
+    ],
+  },
+});
+module.exports = mongoose.model("User", UserSchema);
+
+
+
 // const getDb = require("../util/database").getDb;
 // const mongodb = require("mongodb");
 // const { getAddProduct } = require("../controllers/admin");
@@ -83,7 +108,7 @@
 //         user: {
 //           _id: new ObjectId(this._id),
 //           name: this.name,
-         
+
 //         },
 //       };
 //       return db
@@ -100,9 +125,7 @@
 //       });
 
 //     })
-    
-    
-      
+
 //   }
 //   getOrders() {
 //     const db = getDb();
@@ -127,4 +150,3 @@
 //       });
 //   }
 // }
-// module.exports = User;
